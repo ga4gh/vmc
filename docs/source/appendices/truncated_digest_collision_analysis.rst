@@ -18,7 +18,7 @@ Conclusions
    methods. Given that it is believed to distribute input bits more
    uniformly with no increased computational cost, it should be
    preferred for our use (and likely most uses).
--  24 bytes (192 bits) of digest is *ample* for VR uses. Arguably, we
+-  24 bytes (192 bits) of digest is *ample* for VRS uses. Arguably, we
    could choose much smaller without significant risk of collision.
 
 .. code:: ipython3

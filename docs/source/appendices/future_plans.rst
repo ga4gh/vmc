@@ -6,7 +6,7 @@ Future Plans
 Overview
 @@@@@@@@
 
-The VR-Spec covers a fundamental subset of data types to represent
+VRS covers a fundamental subset of data types to represent
 variation, thus far predominantly related to the replacement of a
 subsequence in a reference sequence. Increasing its applicability will
 require supporting more complex types of variation, including:
@@ -20,13 +20,13 @@ require supporting more complex types of variation, including:
 
 .. figure:: ../images/schema-future.png
 
-   An illustration of planned components for the VR Schema.
+   An illustration of planned components for the VRS Schema.
 
    Version 1.0 components are colored green. Components that are
    undergoing testing and evaluation and are candidates for the next
    release cycle are colored yellow. Components that are planned but
    still undergoing requirement gathering and initial development are
-   colored red. The VR Schema requires the use of multiple composite
+   colored red. The VRS Schema requires the use of multiple composite
    objects, which are grouped under four abstract classes:
    :ref:`Variation`, :ref:`Location`, :ref:`State`, and
    :ref:`Interval`. These classes and their relationships to the
@@ -48,7 +48,7 @@ to address a broader representation of variation.
 Intervals and Locations
 @@@@@@@@@@@@@@@@@@@@@@@
 
-VR-Spec uses :ref:`Interval` and :ref:`Location` subclasses to define
+VRS uses :ref:`Interval` and :ref:`Location` subclasses to define
 where variation occurs.  The schema is designed to be extensible to
 new kinds of Intervals and Locations in order to support, for example,
 fuzzy coordinates or feature-based locations.
@@ -130,7 +130,7 @@ Imprecise chromosomal locations based on chromosomal staining.
 **Computational definition**
 
 Cytogenetic bands are defined by a chromosome name, band, and
-sub-band. In VR-Spec, a cytogenetic location is an interval on a
+sub-band. In VRS, a cytogenetic location is an interval on a
 single chromsome with a start and end band and subband.
 
 **Information model**
@@ -266,7 +266,7 @@ Translocations
 The aberrant joining of two segments of DNA that are not typically
 contiguous.  In the context of joining two distinct coding sequences,
 translocations result in a gene fusion, which is also covered by this
-VR-Spec definition.
+VRS definition.
 
 **Computational definition**
 

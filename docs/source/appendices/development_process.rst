@@ -4,8 +4,8 @@ Development Process
 Versioning
 ##########
 
-VR-Spec will follow GA4GH `recommendation for semantic versioning`_
-with semver 2.0. The VR-Spec GitHub repository will maintain the
+VRS will follow GA4GH `recommendation for semantic versioning`_
+with semver 2.0. The VRS GitHub repository will maintain the
 latest development code on the master branch for community review (see
 :ref:`Release Cycle <release-cycle>`).
 
@@ -17,13 +17,13 @@ Release Cycle
 Planned Features
 $$$$$$$$$$$$$$$$
 Feature requests from the community are made through the generation of
-`GitHub issues on the VR-Spec repository`_, which are open for
+`GitHub issues on the VRS repository`_, which are open for
 public review and discussion. Feature requests identified to support
-an unmet need by the existing VR-Spec are scheduled for discussion
+an unmet need are scheduled for discussion
 in our weekly VR calls. These discussions are used to inform whether
 or not a feature will be planned for development. The :ref:`Project
 Leadership <project-leadership>` is responsible for making the final
-determination on whether a feature is to be added to VR-Spec.
+determination on whether a feature is to be added to VRS.
 
 Requirements Gathering
 $$$$$$$$$$$$$$$$$$$$$$
@@ -89,6 +89,6 @@ Project maintainers are the leads of the GKS Variation Representation working gr
 
 
 .. _recommendation for semantic versioning: https://docs.google.com/document/d/1UUJSnsPw32W5r1jaJ0vI11X0LLLygpAC9TNosjSge_w/edit#heading=h.h5gpuoaxcrgy
-.. _GitHub issues on the VR-Spec repository: https://github.com/ga4gh/vr-spec/issues
+.. _GitHub issues on the VRS repository: https://github.com/ga4gh/vr-spec/issues
 .. _example requirement issues: https://github.com/ga4gh/vr-spec/labels/requirements
 .. _Work Stream leadership: https://ga4gh-gks.github.io/

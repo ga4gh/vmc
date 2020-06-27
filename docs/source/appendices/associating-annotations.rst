@@ -1,13 +1,13 @@
 .. _associating-annotations:
 
-Associating Annotions with VR Objects
-=====================================
+Associating Annotions with VRS Objects
+======================================
 
 This example demonstrates how to associate information with VR
 objects.  Although the examples use the |vr-python| library, the
 principles apply regardless of implementation.
 
-Information is never embedded within VR objects. Instead, it is
+Information is never embedded within VRS objects. Instead, it is
 associated with those objects by means of their ids. This approach to
 annotations scales better in size and distributes better across multiple
 data sources.

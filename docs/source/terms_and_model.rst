@@ -49,22 +49,22 @@ depend only on previously-defined terms.
 Data Model Notes and Principles
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-* VR uses `snake_case
+* VRS uses `snake_case
   <https://simple.wikipedia.org/wiki/Snake_case>`__ to represent
   compound words.  Although the schema is currently JSON-based (which
-  would typically use camelCase), VR itself is intended to be neutral
+  would typically use camelCase), VRS itself is intended to be neutral
   with respect to languages and database.
 
-* VR objects are `value objects
+* VRS objects are `value objects
   <https://en.wikipedia.org/wiki/Value_object>`__.  Two objects are
   considered equal if and only if their respective attributes are
-  equal.  As value objects, VR objects are used as primitive types and
+  equal.  As value objects, VRS objects are used as primitive types and
   SHOULD NOT be used as containers for related data.  Instead, related
-  data should be associated with VR objects through identifiers.  See
+  data should be associated with VRS objects through identifiers.  See
   :ref:`computed-identifiers`.
 
 * Error handling is intentionally unspecified and delegated to
-  implementation.  The VR-Spec provides foundational data types that
+  implementation.  VRS provides foundational data types that
   enable significant flexibility.  Except where required by this
   specification, implementations may choose whether and how to
   validate data.  For example, implementations MAY choose to validate
@@ -72,11 +72,11 @@ Data Model Notes and Principles
   validation is not required.
 
 * We recognize that a common desire may be to have human-readable
-  identifiers associated with VR objects. We recommend using the _id
+  identifiers associated with VRS objects. We recommend using the _id
   field (see :ref:`optional-attributes` below) to create a lookup for
   any such identifiers (see :ref:`example usage
   <associating-annotations>`), and provide reference methods for
-  creating VR identifiers from other common variant formats (see the
+  creating VRS identifiers from other common variant formats (see the
   :ref:`HGVS translation example <example>`).
 
 
@@ -85,14 +85,14 @@ Data Model Notes and Principles
 Optional Attributes
 @@@@@@@@@@@@@@@@@@@
 
-* VR attributes use a leading underscore to represent optional
+* VRS attributes use a leading underscore to represent optional
   attributes that are not part of the value object.  Such attributes
   are not considered when evaluating equality or creating computed
   identifiers. Currently, the only such attribute in the specification
   is the `_id` attribute.
 
 * The `_id` attribute is available to identifiable objects, and MAY be
-  used by an implementation to store the identifier for a VR object.
+  used by an implementation to store the identifier for a VRS object.
   If used, the stored `_id` element MUST be a :ref:`curie`. If used for
   creating a :ref:`truncated-digest` for parent objects, the stored
   element must be a :ref:`GA4GH Computed Identifier <identify>`.
@@ -118,9 +118,9 @@ string has the structure ``prefix``:``reference`` (W3C Terminology).
  
 **Implementation guidance**
 
-* All identifiers in VR-Spec MUST be a valid |curie|, regardless of
-  whether the identifier refers to GA4GH VR objects or external data.
-* For GA4GH VR Objects, this specification RECOMMENDS using globally
+* All identifiers in VRS MUST be a valid |curie|, regardless of
+  whether the identifier refers to GA4GH VRS objects or external data.
+* For GA4GH VRS objects, this specification RECOMMENDS using globally
   unique :ref:`computed-identifiers` for use within *and* between
   systems.
 * For external data, CURIE-formatted identifiers MUST be used.  When
@@ -196,7 +196,7 @@ amino acid codes.
 * A Sequence MAY have several roles. A “reference sequence” is any Sequence used
   to define an :ref:`Allele`. A Sequence that replaces another Sequence is
   called a “replacement sequence”.
-* In some contexts outside the VR specification, “reference sequence” may refer
+* In some contexts outside VRS, “reference sequence” may refer
   to a member of set of sequences that comprise a genome assembly. In the VR
   specification, any sequence may be a “reference sequence”, including those in
   a genome assembly.
@@ -228,9 +228,9 @@ possibly with length zero, and specified using
 enable other methods for describing where :ref:`variation` occurs. Any
 of these MAY be used as the Interval for Location.
 
-.. sidebar:: VR Uses Interbase Coordinates
+.. sidebar:: VRS Uses Interbase Coordinates
 
-   **GA4GH VR uses interbase coordinates when referring to spans of
+   **GA4GH VRS uses interbase coordinates when referring to spans of
    sequence.**
 
    Interbase coordinates refer to the zero-width points before and
@@ -280,7 +280,7 @@ An :ref:`Interval` with a single start and end coordinate.
 * Implementations MUST enforce values 0 ≤ start ≤ end. In the case of
   double-stranded DNA, this constraint holds even when a feature is on
   the complementary strand.
-* VR uses Interbase coordinates because they provide conceptual
+* VRS uses Interbase coordinates because they provide conceptual
   consistency that is not possible with residue-based systems (see
   :ref:`rationale <interbase-coordinates-design>`). Implementations
   will need to convert between interbase and 1-based inclusive
@@ -353,11 +353,11 @@ $$$$$$$$$$$$$$$$
 
 **Biological definition**
 
-None
+A specified subsequence within another sequence that is used as a reference sequence.
 
 **Computational definition**
 
-A Location subclass for describing a defined :ref:`Interval` over a
+A Location subclass for describing a defined :ref:`Interval` on a
 named :ref:`Sequence`.
 
 **Information model**
@@ -395,7 +395,7 @@ named :ref:`Sequence`.
    * 0 ≤ *interval.start* ≤ *interval.end* ≤ *n*
    * interbase coordinate 0 refers to the point before the start of the Sequence
    * interbase coordinate n refers to the point after the end of the Sequence.
-* Coordinates MUST refer to a valid Sequence. VR does not support
+* Coordinates MUST refer to a valid Sequence. VRS does not support
   referring to intronic positions within a transcript sequence,
   extrapolations beyond the ends of sequences, or other implied
   sequence.
@@ -506,7 +506,7 @@ The *Variation* abstract class is the top-level object in the
 state. The representation and types of molecular states are widely
 varied, and there are several :ref:`planned-variation` currently under
 consideration to capture this diversity. The primary Variation
-subclass defined by the VR |version| specification is the
+subclass defined by the VRS |version| specification is the
 :ref:`Allele`, with the :ref:`text` subclass for capturing other
 Variations that are not yet covered.
 
@@ -682,7 +682,7 @@ subclasses, but are still treated as variation.
   than Text if possible.
 * An implementation SHOULD define or adopt conventions for defining
   the strings stored in Text.definition.
-* If a future version of VR-Spec is adopted by an implementation and
+* If a future version of VRS is adopted by an implementation and
   the new version enables defining existing Text objects under a
   different Variation subclass, the implementation MUST construct a
   new object under the other Variation subclass. In such a case, an

@@ -29,7 +29,7 @@ The genesis of the GA4GH VR project was the Variation Modelling
 Collaboration (VMC), which was formed as a collaboration of members of
 ClinGen, ClinVar, FHIR, and GA4GH.  In 2017, the VMC group was
 absorbed into the GA4GH and underwent a major membership change.
-GA4GH's VR-Spec borrowed heavily from the VMC effort.  We thank the
+GA4GH's VRS borrowed heavily from the VMC effort.  We thank the
 following VMC Collaborators for their contributions.
 
 * Reece Hart, Invitae, GA4GH, chair

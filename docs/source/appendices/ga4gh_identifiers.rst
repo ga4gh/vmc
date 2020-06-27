@@ -8,7 +8,7 @@ for serializing data, computing digests on serialized data, and
 constructing CURIE identifiers from the digests.  Essentially, it is a
 generalization of the :ref:`computed-identifiers` section.
 
-This standard is proposed now because the VR Specification needs a
+This standard is proposed now because VRS needs a
 well-defined mechanism for generating identifiers.  Changing the
 identifier mechanism later will create significant issues for VR
 adopters.
@@ -25,7 +25,7 @@ for each identifier.  Traditionally, identifiers are assigned to
 entities, which means that disconnected groups must coordinate on
 identifier assignment.
 
-The computed identifier scheme proposed in the VR Specification
+The computed identifier scheme proposed in VRS
 computes identifiers from the data itself.  Because identifers depend
 on the data, groups that independently generate the same variation
 will generate the same computed identifier for that entity, thereby
@@ -41,10 +41,10 @@ share tooling that manipulate identified data.  In short, it provides
 an important consistency within the GA4GH ecosystem.
 
 As a result, we are proposing that the computed identifier scheme
-described in the VR specification be considered for adoption as a
+described in VRS be considered for adoption as a
 GA4GH-wide standard.  If the proposal is accepted by the GA4GH
-executive committee, the current VR proposal will stand as-is; if the
-proposal is rejected, the VR proposal will be modified to rescope the
+executive committee, the current VRS proposal will stand as-is; if the
+proposal is rejected, the VRS proposal will be modified to rescope the
 computed identifier mechanism to VR and under admininstration of the
 VR team.
 
@@ -78,7 +78,7 @@ The `digest` is computed as described above. The type_prefix is a
 short alphanumeric code that corresponds to the type of object being
 represented.  If this propsal is accepted, this "type prefix map"
 would be administered by GA4GH.  (Currently, this map is maintained in
-a YAML file within the vr-spec repository, but it would be relocated
+a YAML file within the VRS repository, but it would be relocated
 on approval of this proposal.)
 
 We propose the following guidelines for type prefixes:

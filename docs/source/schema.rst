@@ -33,7 +33,7 @@ Overview
 Machine Readable Specifications
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-The machine readable VR Specification is written using `JSON Schema
+The machine readable VRS Specification is written using `JSON Schema
 <https://json-schema.org/>`_.
 
 The schema itself is written in YAML (|vr_yaml|) and converted to JSON

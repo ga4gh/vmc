@@ -3,7 +3,7 @@
 Required External Data
 !!!!!!!!!!!!!!!!!!!!!!
 
-All VR-Spec implementations will require external data regarding
+All VRS implementations will require external data regarding
 sequences and sequence metadata.  The choices of data sources and
 access methods are left to implementations.  This section provides
 guidance about how to implement required data and helps implementers
@@ -19,7 +19,7 @@ Contexts
 * **Conversion from other variant formats** When converting from other
   variation formats, implementations MUST translate primary database
   accessions or identifiers (|eg| ``NM_000551.3`` or
-  ``refseq:NM_000551.3``) to a GA4GH VR sequence identifier (
+  ``refseq:NM_000551.3``) to a GA4GH VRS sequence identifier (
   ``ga4gh:SQ.v_QTc1p-MUYdgrRv4LMT6ByXIOsdw3C_``)
 
 * **Conversion to other variant formats** When converting to other

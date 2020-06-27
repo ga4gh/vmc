@@ -5,41 +5,41 @@ Implementations
 
 The libraries and applications listed below have implemented the GA4GH
 Variation Representation Specification to store and exchange variation
-data. They are listed here to demonstrate VR utility and as a resource
-for those considering implementing VR-Spec. These packages are not
+data. They are listed here to demonstrate utility and as a resource
+for those considering implementing VRS. These packages are not
 supported by GA4GH.
 
 
 Libraries
 @@@@@@@@@
 
-Libraries facilitate the use of the VR-Spec, but do not implement a
+Libraries facilitate the use of the VRS, but do not implement a
 particular use or application.  Although there is only one library
 currently, it is expected that others will eventually appear as
-VR-Spec is adopted.
+VRS is adopted.
 
 
 .. _impl-vr-python:
 
-vr-python: GA4GH VR Python Implementation
-#########################################
+vr-python: GA4GH VRS Python Implementation
+##########################################
 
-The |vr-python| is an implementation for the GA4GH VR-Spec.  It
-supports all types covered by the VR-Spec, implements Allele
+The |vr-python| is an implementation for the GA4GH VRS.  It
+supports all types covered by the VRS, implements Allele
 normalization and computed identifier generation, and provides "extra"
 features such as translation from HGVS, SPDI, and VCF formats.  See
 `vr-python notebooks
 <https://github.com/ga4gh/vr-python/blob/master/notebooks>`__ for
 usage examples.
 
-|VR-Spec| MAY be used without using the Python implementation.
+|VRS| MAY be used without using the Python implementation.
 
 
 Applications and Web Services
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-Applications implement VR-Spec to support specific use cases.
-Projects known to implement VR-Spec are listed below. Descriptions are
+Applications implement VRS to support specific use cases.
+Projects known to implement VRS are listed below. Descriptions are
 provided by the application authors.
 
 
@@ -56,7 +56,7 @@ of the reference sequence and normalization status.
 
 As a Driver Project for GA4GH, `ClinGen Allele Registry
 <https://reg.clinicalgenome.org>`__ implements two standards: RefGet
-and VR in the first implementation.
+and VRS in the first implementation.
 
 The API endpoints that support data retrieval in this two key
 standards are summarized in the following table.
@@ -72,9 +72,9 @@ standards are summarized in the following table.
    [GET] /sequence/{id}, id => TRUNC512 digest for reference sequence, Refget v1.0.0, `/sequence/vYfm5TA_F-_BtIGjfzjGOj8b6IK5hCTx <https://reg.clinicalgenome.org/sequence/F-LrLMe1SRpfUZHkQmvkVKFEGaoDeHul?start=2232131&end=2232145>`__
    [GET] /sequence/{id}/metadata, id => TRUNC512 digest for reference sequence, Refget v1.0.0, `/sequence/vYfm5TA_F-_BtIGjfzjGOj8b6IK5hCTx/metadata <https://reg.clinicalgenome.org/sequence/F-LrLMe1SRpfUZHkQmvkVKFEGaoDeHul/metadata>`__
    **VR**,,,
-   [GET] /vrAllele?hgvs={hgvs}, hgvs => HGVS expression, VR v1.0, `/vrAllele?hgvs=NC_000007.14:g.55181320A>T <https://reg.clinicalgenome.org/vrAllele?hgvs=NC_000007.14:g.55181320A%3ET>`__  `/vrAllele?hgvs=NC_000007.14:g.55181220del <https://reg.clinicalgenome.org/vrAllele?hgvs=NC_000007.14:g.55181220del>`__
+   [GET] /vrAllele?hgvs={hgvs}, hgvs => HGVS expression, VRS v1.0, `/vrAllele?hgvs=NC_000007.14:g.55181320A>T <https://reg.clinicalgenome.org/vrAllele?hgvs=NC_000007.14:g.55181320A%3ET>`__  `/vrAllele?hgvs=NC_000007.14:g.55181220del <https://reg.clinicalgenome.org/vrAllele?hgvs=NC_000007.14:g.55181220del>`__
 
-Support for GA4GH refget and VR specs provided in ClinGen Allele
+Support for GA4GH refget and VRS specs provided in ClinGen Allele
 Registry is independent from VR-Python. Support for this community
 standards is implemented in ClinGen Allele Registry through extension
 of code written in C++.
@@ -86,8 +86,8 @@ BRCA Exchange
 #############
 
 BRCA Exchange [2]_ proposes an API endpoint which will share the variant
-list in VR JSON model.  Behind the scenes, all variants will be
-represented according to VR specification, in a separate table of the
+list in VRS JSON model.  Behind the scenes, all variants will be
+represented according to VRS, in a separate table of the
 BRCA Exchange database, and the contents of this table will be served
 by the BRCA Exchange API.  A stand-alone executable will leverage
 these data to integrate the BRCA Exchange variant set with the ClinGen
@@ -108,9 +108,9 @@ one or more variations or a variation class.
 
 As a Driver Project for GA4GH, VICC is contributing to and/or
 adopting three GA4GH standards: VR, Variant Annotation (VA), and the
-Data Use Ontology (DUO). VICC supports queries on all VR computed
+Data Use Ontology (DUO). VICC supports queries on all VRS computed
 identifiers at the searchAssociations endpoint (`vicc-docs`_).
-Features associated with each interpretation are represented as VR-spec
+Features associated with each interpretation are represented as VRS
 objects.
 
 Example queries:

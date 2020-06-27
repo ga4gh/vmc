@@ -1,7 +1,7 @@
 GA4GH Variation Representation Specification
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-The Variation Representation Specification (VR-Spec) is a standard
+The Variation Representation Specification (VRS, pronounced "verse") is a standard
 developed by the Global Alliance for Genomic Health to facilitate and
 improve sharing of genetic information.  The Specification consists of
 a JSON Schema for representing many classes of genetic variation,

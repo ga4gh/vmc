@@ -13,16 +13,16 @@ Translate HGVS to VR
 
 .. sidebar:: **Polymorphism in VR**
 
-   VR uses polymorphism extensively in order to provide a coherent
+   VRS uses polymorphism extensively in order to provide a coherent
    top-down structure for variation while enabling precise models for
    variation data.
 
    For example, Allele is a kind of Variation, SequenceLocation is a
    kind of Location, and SequenceState is a kind of State.  See
-   :ref:`future-plans` for the roadmap of VR data classes and
+   :ref:`future-plans` for the roadmap of VRS data classes and
    relationships.
 
-   All VR objects contain a ``type`` attribute, which is used to
+   All VRS objects contain a ``type`` attribute, which is used to
    discriminate polymorphic objects.
 
 
@@ -35,7 +35,7 @@ reference nucleotide ``G`` to ``C``.
 In VR, a contiguous change is represented using an :ref:`allele`
 object, which is composed of a :ref:`Location <location>` and of the
 :ref:`State <state>` at that location.  Location and State are
-abstract concepts: VR is designed to accommodate many kinds of
+abstract concepts: VRS is designed to accommodate many kinds of
 Locations based on sequence position, gene names, cytogentic bands, or
 other ways of describing locations. Similarly, State may refer to a
 specific sequence change, copy number change, or complex sequence
@@ -47,11 +47,11 @@ composed of a sequence identifier and a :ref:`SimpleInterval`.
 In VR, all identifiers are a |CURIE|.  Therefore, NC_000013.11 MUST be
 written as the string ``refseq:NC_000013.11`` to make explicit that
 this sequence is from `RefSeq
-<https://www.ncbi.nlm.nih.gov/refseq/>`__ .  VR does not restrict
+<https://www.ncbi.nlm.nih.gov/refseq/>`__ .  VRS does not restrict
 which data sources may be used, but does recommend using prefixes from
 `identifiers.org <http://identifiers.org>`_.
 
-VR uses :ref:`interbase-coordinates-design`.  Interbase coordinates
+VRS uses :ref:`interbase-coordinates-design`.  Interbase coordinates
 *always* use intervals to refer to sequence spans.  For the purposes
 of this example, interbase coordinates *look* like the more familiar
 0-based, right-open numbering system.  (Please read about
@@ -116,12 +116,12 @@ the objects defined above:
     }
 
 
-This Allele is a fully-compliant VR object that is parsable using the
-VR JSON Schema.
+This Allele is a fully-compliant VRS object that is parsable using the
+VRS JSON Schema.
 
-.. note:: VR is verbose! The goal of VR is to provide a extensible
+.. note:: VRS is verbose! The goal of VRS is to provide a extensible
           framework for representation of sequence variation in
-          computers.  VR objects are readily parsable and have precise
+          computers.  VRS objects are readily parsable and have precise
           meaning, but are often larger than other representations and
           are typically less readable by humans.  This tradeoff is
           intentional!
@@ -131,7 +131,7 @@ VR JSON Schema.
 Generate a computed identifer
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-A key feature of VR-Spec is an easily-implemented algorithm to
+A key feature of VRS is an easily-implemented algorithm to
 generate computed, digest-based identifiers for variation objects.
 This algorithm permits organizations to generate the same identifier
 for the same allele without prior coordination, which in turn
@@ -146,9 +146,9 @@ MUST be transformed into a digest-based identifer as described in
 precompute sequence digests or SHOULD use an existing service that
 does so. (See :ref:`required-data` for a description of data that are
 needed to implement VR.)  In this case, ``refseq:NC_000013.11`` maps
-to ``ga4gh:SQ._0wi-qoDrvram155UmcSC-zA5ZK4fpLT``. All VR computed
+to ``ga4gh:SQ._0wi-qoDrvram155UmcSC-zA5ZK4fpLT``. All VRS computed
 identifiers begin with the ``ga4gh`` prefix and use a type prefix
-(``SQ``, here) to denote the type of object.  The VR sequence
+(``SQ``, here) to denote the type of object.  The VRS sequence
 identifier is then substituted directly into the Allele's location
 object:
 
@@ -171,9 +171,9 @@ object:
       "type": "Allele"
     }
 
-This, too, is a valid VR Allele.
+This, too, is a valid VRS Allele.
 
-.. note:: Using VR sequence identifiers collapses differences between
+.. note:: Using VRS sequence identifiers collapses differences between
 	  alleles due to trivial differences in reference naming.  The
 	  same variation reported on NC_000013.11, CM000675.2,
 	  GRCh38:13, GRCh38.p13:13 would appear to be distinct
@@ -197,7 +197,7 @@ like:
                that guarantee that different implementations will
                generate the same binary "blob".  Do not confuse binary
                digest serialization with JSON serialization, which is
-               used elsewhere with VR schema.
+               used elsewhere with VRS schema.
 
 The GA4GH digest for the above blob is computed using the first 192
 bits (24 bytes) of the `SHA-512`_ digest, `base64url`_ encoded.
@@ -212,7 +212,7 @@ A GA4GH Computed Identifier has the form::
 
   "ga4gh" ":" <type_prefix> "." <digest>
 
-The ``type_prefix`` for a VR Allele is ``VA``, which results in the
+The ``type_prefix`` for a VRS Allele is ``VA``, which results in the
 following computed identifier for our example::
 
   ga4gh:VA.n9ax-9x6gOC0OEt73VMYqCBfqfxG1XUH
@@ -257,16 +257,16 @@ What's Next?
 @@@@@@@@@@@@
 
 This example has shown a full example for a relatively simple case.
-VR provides a framework that will enable much more complex variation.
+VRS provides a framework that will enable much more complex variation.
 Please see :ref:`future-plans` for a discussion of variation classes
 that are intened in the near future.
 
 The :ref:`implementations` section lists libraries and packages that
-implement VR-Spec.
+implement VRS.
 
-VR objects are `value objects
+VRS objects are `value objects
 <https://en.wikipedia.org/wiki/Value_object>`__.  An important
 consequence of this design choice is that data should be associated
-*with* VR objects via their identifiers rather than embedded *within*
+*with* VRS objects via their identifiers rather than embedded *within*
 those objects.  The appendix contains an example of :ref:`associating
 annotations with variation <associating-annotations>`.

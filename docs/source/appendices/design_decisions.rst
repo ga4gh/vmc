@@ -3,7 +3,7 @@
 Design Decisions
 !!!!!!!!!!!!!!!!
 
-VR contributors confronted numerous trade-offs in developing this
+VRS contributors confronted numerous trade-offs in developing this
 specification. As these trade-offs may not be apparent to outside
 readers, this section highlights the most significant ones and the
 rationale for our design decisions, including:
@@ -21,7 +21,7 @@ the Genetics community is intended to describe discrete changes in
 nucleotide / amino acid sequence. "Variation", in contrast, captures
 other classes of molecular variation, including epigenetic alteration
 and transcript abundance. Capturing these other classes of variation
-is a :doc:`future goal <future_plans>` of the VR-Spec, as there are many
+is a :doc:`future goal <future_plans>` of VRS, as there are many
 annotations that will require these variation classes as the subject.
 
 .. _use-allele:
@@ -29,7 +29,7 @@ annotations that will require these variation classes as the subject.
 Allele Rather than Variant
 @@@@@@@@@@@@@@@@@@@@@@@@@@
 
-The most primitive sequence assertion in VR is the :ref:`Allele`
+The most primitive sequence assertion in VRS is the :ref:`Allele`
 entity. Colloquially, the words "allele" and "variant" have similar
 meanings and they are often used interchangeably. However, the VR
 contributors believe that it is essential to distinguish the state of
@@ -51,7 +51,7 @@ Alleles are Fully Justified
 @@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 In order to standardize the presentation of sequence variation, computed ids from
-the VR specification require that Alleles be fully justified from the description
+VRS require that Alleles be fully justified from the description
 of the NCBI `Variant Overprecision Correction Algorithm (VOCA)`_. Furthermore,
 normalization rules must be identical for all sequence types; although this
 need not be a strict requirement, there is no reason to normalize using
@@ -111,7 +111,7 @@ coupling of distinct concepts.
 Modelling Language
 @@@@@@@@@@@@@@@@@@
 
-The VR collaborators investigated numerous options for modelling data,
+The VRS collaborators investigated numerous options for modelling data,
 generating code, and writing the wire protocol. Required and desired
 selection criteria included:
 
@@ -126,10 +126,10 @@ selection criteria included:
    * nested objects
 * protocol versioning (but not necessarily automatic adaptation)
 
-Initial versions of the VR logical model were implemented in UML,
+Initial versions of the VRS logical model were implemented in UML,
 protobuf, and swagger/OpenAPI, and JSON Schema. We have implemented
 our schema in JSON Schema. Nonetheless, it is anticipated that some
-adopters of the VR logical model may implement the specification in
+adopters of the VRS logical model may implement the specification in
 other protocols.
 
 .. _dd-digest-serialization:

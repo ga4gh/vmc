@@ -3,16 +3,16 @@
 Computed Identifiers
 !!!!!!!!!!!!!!!!!!!!
 
-The VR-Spec provides an algorithmic solution to deterministically
-generate a globally unique identifier from a VR object itself. All
-valid implementations of the VR Computed Identifier will generate the
+VRS provides an algorithmic solution to deterministically
+generate a globally unique identifier from a VRS object itself. All
+valid implementations of the VRS Computed Identifier will generate the
 same identifier when the objects are identical, and will generate
-different identifiers when they are not. The VR Computed Digest
+different identifiers when they are not. The VRS Computed Digest
 algorithm obviates centralized registration services, allows
 computational pipelines to generate "private" ids efficiently, and
 makes it easier for distributed groups to share data.
 
-A VR Computed Identifier for a VR concept is computed as follows:
+A VRS Computed Identifier for a VRS concept is computed as follows:
 
 * If the object is an :ref:`allele`, :ref:`normalize <normalization>` it.
 
@@ -78,11 +78,11 @@ Implementations MUST adhere to the following requirements:
 Digest Serialization
 @@@@@@@@@@@@@@@@@@@@
 
-Digest serialization converts a VR object into a binary representation
+Digest serialization converts a VRS object into a binary representation
 in preparation for computing a digest of the object.  The Digest
 Serialization specification ensures that all implementations serialize
 variation objects identically, and therefore that the digests will
-also be identical.  |vr-spec| provides validation tests to ensure
+also be identical.  |VRS| provides validation tests to ensure
 compliance.
 
 .. important:: Do not confuse Digest Serialization with JSON
@@ -93,7 +93,7 @@ compliance.
 
 Although several proposals exist for serializing arbitrary data in a
 consistent manner ([Gibson]_, [OLPC]_, [JCS]_), none have been
-ratified. As a result, |vr-spec| defines a custom serialization format
+ratified. As a result, |VRS| defines a custom serialization format
 that is consistent with these proposals but does not rely on them for
 definition; it is hoped that a future ratified standard will be
 forward compatible with the process described here.
@@ -105,7 +105,7 @@ common operation, implementations are strongly encouraged to
 precompute GA4GH sequence identifiers as described in
 :ref:`required-data`.
 
-If the object is a composite VR object, implementations MUST:
+If the object is a composite VRS object, implementations MUST:
 
     * ensure that objects are referenced with identifiers in the
       ``ga4gh`` namespace
@@ -214,24 +214,24 @@ Identifier Construction
 @@@@@@@@@@@@@@@@@@@@@@@
 
 
-The final step of generating a computed identifier for a VR object is
+The final step of generating a computed identifier for a VRS object is
 to generate a `W3C CURIE <https://www.w3.org/TR/curie/>`__ formatted identifier, which
 has the form::
 
     prefix ":" reference
 
-The GA4GH VR-Spec constructs computed identifiers as follows::
+The GA4GH VRS constructs computed identifiers as follows::
 
     "ga4gh" ":" type_prefix "." <digest>
 
 .. warning:: Do not confuse the W3C CURIE ``prefix`` ("ga4gh") with the
           type prefix.
 
-Type prefixes used by VR are:
+Type prefixes used by VRS are:
 
 .. _type_prefixes:
 .. csv-table::
-   :header: type_prefix, VR Spec class name
+   :header: type_prefix, VRS class name
    :align: left
 
    SQ, Sequence
