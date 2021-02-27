@@ -34,7 +34,7 @@ def _parse_release_as_version(rls):
 # -- Project information -----------------------------------------------------
 
 project = 'GA4GH Variation Representation Specification'
-copyright = '2019, GA4GH VR Contributors'
+copyright = '2019, GA4GH VRS Contributors'
 author = 'Committers'
 master_doc = 'index'
 # N.B. RTD ignores these values. :-/
@@ -64,7 +64,7 @@ templates_path = ['_templates']
 exclude_patterns = []
 
 # TODO directive output
-todo_include_todos = False
+todo_include_todos = True
 todo_emit_warnings = True
 
 # -- Options for HTML output -------------------------------------------------

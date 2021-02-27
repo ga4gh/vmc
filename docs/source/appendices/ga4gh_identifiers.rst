@@ -45,7 +45,7 @@ described in VRS be considered for adoption as a
 GA4GH-wide standard.  If the proposal is accepted by the GA4GH
 executive committee, the current VRS proposal will stand as-is; if the
 proposal is rejected, the VRS proposal will be modified to rescope the
-computed identifier mechanism to VR and under admininstration of the
+computed identifier mechanism to VRS and under admininstration of the
 VR team.
 
 
@@ -53,7 +53,7 @@ VR team.
 Proposal
 @@@@@@@@
 
-The following algorithmic processes, described in depth in the VR
+The following algorithmic processes, described in depth in the VRS
 :ref:`computed-identifiers` proposal, are included in this proposal by
 reference:
 

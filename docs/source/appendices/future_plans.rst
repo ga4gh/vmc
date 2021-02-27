@@ -18,26 +18,23 @@ require supporting more complex types of variation, including:
 * mosaicism and chimerism
 * rule-based variation
 
+.. todo::
+   The below figure will be updated prior to v1.2 release.
+
 .. figure:: ../images/schema-future.png
 
-   An illustration of planned components for the VRS Schema.
+   Planned Variation Representation Specfication Schema
 
-   Version 1.0 components are colored green. Components that are
+   See :ref:`Current schema diagram <vr-schema-diagram>` for legend.
+
+   Existing classes are colored green. Components that are
    undergoing testing and evaluation and are candidates for the next
-   release cycle are colored yellow. Components that are planned but
+   release cycle are yellow. Components that are planned but
    still undergoing requirement gathering and initial development are
-   colored red. The VRS Schema requires the use of multiple composite
-   objects, which are grouped under four abstract classes:
-   :ref:`Variation`, :ref:`Location`, :ref:`State`, and
-   :ref:`Interval`. These classes and their relationships to the
-   representation of Variation are illustrated here. All classes have
-   a string type. Dashed borders denote abstract classes. Abstract
-   classes are not instantiated. Thin solid borders denote classes
-   that may be instantiated but are not identifiable. Bold borders
-   denote identifiable objects (i.e., may be serialized and identified
-   by computed identifier). Solid arrow lines denoted
-   inheritance. Subclasses inherit all attributes from their
-   parent. Inherited attributes are not shown.
+   colored red.
+
+   [`source
+   <https://app.diagrams.net/#G1Qimkvi-Fnd1hhuixbd6aU4Se6zr5Nc1h>`__]
 
 The following sections provide a preview of planned concepts under way
 to address a broader representation of variation.
@@ -48,18 +45,14 @@ to address a broader representation of variation.
 Intervals and Locations
 @@@@@@@@@@@@@@@@@@@@@@@
 
-VRS uses :ref:`Interval` and :ref:`Location` subclasses to define
-where variation occurs.  The schema is designed to be extensible to
-new kinds of Intervals and Locations in order to support, for example,
-fuzzy coordinates or feature-based locations.
+VRS uses :ref:`Location` subclasses to define where variation occurs.
+The schema is designed to be extensible to new kinds of Intervals and
+Locations in order to support, for example, fuzzy coordinates or
+feature-based locations.
 
 
 NestedInterval
 ##############
-
-**Biological definition**
-
-None
 
 **Computational definition**
 
@@ -105,8 +98,6 @@ region (the *outer* SimpleInterval) and required included region (the
 ComplexInterval
 ###############
 
-**Biological definition**
-
 Representation of complex coordinates based on relative locations or
 offsets from a known location. Examples include "left of" a given
 position and intronic positions measured from intron-exon junctions.
@@ -120,35 +111,52 @@ Under development.
 Under development.
 
 
-CytobandLocation
-################
+.. _planned-variation:
 
-**Biological definition**
+Variation Classes
+@@@@@@@@@@@@@@@@@
 
-Imprecise chromosomal locations based on chromosomal staining.
+Additional :ref:`Variation` concepts that are being planned for future
+consideration in the specification. See :ref:`Variation` for more
+information.
+
+
+Translocations
+##############
+
+.. note:: This concept is being refined. Please comment at https://github.com/ga4gh/vrs/issues/103
+
+The aberrant joining of two segments of DNA that are not typically
+contiguous.  In the context of joining two distinct coding sequences,
+translocations result in a gene fusion, which is also covered by this
+VRS definition.
 
 **Computational definition**
 
-Cytogenetic bands are defined by a chromosome name, band, and
-sub-band. In VRS, a cytogenetic location is an interval on a
-single chromsome with a start and end band and subband.
+A joining of two sequences is defined by two :ref:`Location` objects
+and an indication of the join "pattern" (advice needed on conventional
+terminology, if any).
 
 **Information model**
 
-Under development.
+Under consideration. See https://github.com/ga4gh/vrs/issues/28.
+
+**Examples**
+
+t(9;22)(q34;q11) in BCR-ABL
 
 
-GeneLocation
-############
+.. _genotype:
 
-**Biological definition**
+Genotype
+########
 
-The symbolic location of a gene.
+The genetic state of an organism, whether complete (defined over the
+whole genome) or incomplete (defined over a subset of the genome).
 
 **Computational definition**
 
-A gene location is made by reference to a gene identifier from NCBI,
-Ensembl, HGNC, or other public trusted authority.
+A list of Haplotypes.
 
 **Information model**
 
@@ -165,122 +173,104 @@ Ensembl, HGNC, or other public trusted authority.
    * - _id
      - :ref:`CURIE`
      - 0..1
-     - Location Id; MUST be unique within document
+     - Variation Id; MUST be unique within document
    * - type
      - string
      - 1..1
-     - Location type; MUST be set to '**GeneLocation**'
-   * - gene_id
-     - :ref:`CURIE`
+     - Variation type; MUST be set to '**Genotype**'
+   * - completeness
+     - enum
      - 1..1
-     - CURIE-formatted gene identifier using NCBI numeric gene id.
+     - Declaration of completeness of the Haplotype definition.
+       Values are:
 
-**Notes**
+       * UNKNOWN: Other Haplotypes may exist.
+       * PARTIAL: Other Haplotypes exist but are unspecified.
+       * COMPLETE: The Genotype declares a complete set of Haplotypes.
 
-* `gene_id` MUST be specified as a CURIE, using a CURIE prefix of
-  `"NCBI"` and CURIE reference with the numeric gene id. Other trusted
-  authorities MAY be permitted in future releases.
+   * - members
+     - :ref:`Haplotype`\[] or :ref:`CURIE`\[]
+     - 0..*
+     - List of Haplotypes or Haplotype identifiers; length MUST agree
+       with ploidy of genomic region
+
 
 **Implementation guidance**
 
-* GeneLocations MAY be converted to :ref:`sequence-location` using
-  external data. The source of such data and mechanism for
-  implementation is not defined by this specification.
+* Haplotypes in a Genotype MAY occur at different locations or on
+  different reference sequences. For example, an individual may have
+  haplotypes on two population-specific references.
+* Haplotypes in a Genotype MAY contain differing numbers of Alleles or
+  Alleles at different Locations.
+
+**Notes**
+
+* The term "genotype" has two, related definitions in common use. The
+  narrower definition is a set of alleles observed at a single
+  location and with a ploidy of two, such as a pair of single residue
+  variants on an autosome. The broader, generalized definition is a
+  set of alleles at multiple locations and/or with ploidy other than
+  two.The VRS Genotype entity is based on this broader definition.
+* The term "diplotype" is often used to refer to two haplotypes. The
+  VRS Genotype entity subsumes the conventional definition of
+  diplotype. Therefore, the VRS model does not include an explicit
+  entity for diplotypes. See :ref:`this note
+  <genotypes-represent-haplotypes-with-arbitrary-ploidy>` for a
+  discussion.
+* The VRS model makes no assumptions about ploidy of an organism or
+  individual. The number of Haplotypes in a Genotype is the observed
+  ploidy of the individual.
+* In diploid organisms, there are typically two instances of each
+  autosomal chromosome, and therefore two instances of sequence at a
+  particular location. Thus, Genotypes will often list two
+  Haplotypes. In the case of haploid chromosomes or
+  haploinsufficiency, the Genotype consists of a single Haplotype.
+* A consequence of the computational definition is that Haplotypes at
+  overlapping or adjacent intervals MUST NOT be included in the same
+  Genotype. However, two or more Alleles MAY always be rewritten as an
+  equivalent Allele with a common sequence and interval context.
+* The rationale for permitting Genotypes with Haplotypes defined on
+  different reference sequences is to enable the accurate
+  representation of segments of DNA with the most appropriate
+  population-specific reference sequence.
+
+**Sources**
+
+SO: `Genotype (SO:0001027)
+<http://www.sequenceontology.org/browser/current_svn/term/SO:0001027>`__
+— A genotype is a variant genome, complete or incomplete.
+
+.. _genotypes-represent-haplotypes-with-arbitrary-ploidy:
+
+.. note:: Genotypes represent Haplotypes with arbitrary ploidy
+     The VRS defines Haplotypes as a list of Alleles, and Genotypes as
+     a list of Haplotypes. In essence, Haplotypes and Genotypes represent
+     two distinct dimensions of containment: Haplotypes represent the "in
+     phase" relationship of Alleles while Genotypes represents sets of
+     Haplotypes of arbitrary ploidy.
+
+     There are two important consequences of these definitions: There is no
+     single-location Genotype. Users of SNP data will be familiar with
+     representations like rs7412 C/C, which indicates the diploid state at
+     a position. In the VRS, this is merely a special case of a
+     Genotype with two Haplotypes, each of which is defined with only one
+     Allele (the same Allele in this case).  The VRS does not define a
+     diplotype type. A diplotype is a special case of a VRS Genotype
+     with exactly two Haplotypes. In practice, software data types that
+     assume a ploidy of 2 make it very difficult to represent haploid
+     states, copy number loss, and copy number gain, all of which occur
+     when representing human data. In addition, assuming ploidy=2 makes
+     software incompatible with organisms with other ploidy. The VRS
+     makes no assumptions about "normal" ploidy.
+
+     In other words, the VRS does not represent single-position
+     Genotypes or diplotypes because both concepts are subsumed by the
+     Allele, Haplotype, and Genotypes entities.
 
 
-.. _planned-states:
 
-State Classes
-@@@@@@@@@@@@@
-
-Additional :ref:`State` concepts that are being planned for future
-consideration in the specification.
-
-
-.. _planned-cnvstate:
-
-CNVState
-########
-
-.. note:: This concept is being refined. Please comment at https://github.com/ga4gh/vr-spec/issues/46.
-
-**Biological definition**
-
-Variations in the number of copies of a segment of DNA.  Copy number
-variations cover copy losses or gains and at known or unknown
-locations (including tandem repeats).  Variations MAY occur at precise
-SequenceLocations, within nested intervals, or at GeneLocations.
-There is no lower or upper bound on CNV sizes.
-
-**Computational definition**
-
-Under development.
-
-**Information model**
-
-.. list-table::
-   :class: reece-wrap
-   :header-rows: 1
-   :align: left
-   :widths: auto
-
-   * - Field
-     - Type
-     - Limits
-     - Description
-   * - type
-     - string
-     - 1..1
-     - State type; MUST be set to '**CNVState**'
-   * - location
-     - :ref:`Location`
-     - 1..1
-     - the Location of the copy ('**null**' if unknown)
-   * - min_copies
-     - int
-     - 1..1
-     - The minimum number of copies
-   * - max_copies
-     - int
-     - 1..1
-     - The maximum number of copies
-
-
-.. _planned-variation:
-
-Variation Classes
-@@@@@@@@@@@@@@@@@
-
-Additional :ref:`Variation` concepts that are being planned for future
-consideration in the specification. See :ref:`Variation` for more
-information.
-
-
-Translocations
-##############
-
-.. note:: This concept is being refined. Please comment at https://github.com/ga4gh/vr-spec/issues/103
-
-**Biological definition**
-
-The aberrant joining of two segments of DNA that are not typically
-contiguous.  In the context of joining two distinct coding sequences,
-translocations result in a gene fusion, which is also covered by this
-VRS definition.
-
-**Computational definition**
-
-A joining of two sequences is defined by two :ref:`Location` objects
-and an indication of the join "pattern" (advice needed on conventional
-terminology, if any).
-
-**Information model**
-
-Under consideration. See https://github.com/ga4gh/vr-spec/issues/28.
-
-**Examples**
-
-t(9;22)(q34;q11) in BCR-ABL
+.. _GitHub issue: https://github.com/ga4gh/vrs/issues
+.. _genetic variation: https://en.wikipedia.org/wiki/Genetic_variation
 
 
 .. _planned-variation-sets:
@@ -312,4 +302,3 @@ RuleState
 RuleState is a subclass of :ref:`state` intended to capture states defined
 by categorical rules instead of sequence states. This includes *gain- /
 loss-of-function*, *oncogenic*, and *truncating* variation.
-

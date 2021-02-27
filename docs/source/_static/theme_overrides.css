@@ -61,3 +61,9 @@ div.figure div.legend p:last-child {
     margin-bottom: 0px;
 }
     
+
+/* nested ul leads to awkward spacing of list items. 
+   This change doesn't seem to induce any other odd spacing */
+.rst-content .section ul p {
+    margin-bottom: 0px;
+}

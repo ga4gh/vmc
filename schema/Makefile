@@ -2,7 +2,7 @@
 .SUFFIXES:
 .DELETE_ON_ERROR:
 
-YAMLS:=$(wildcard *.yaml)
+YAMLS:=ga4gh.yaml vrs.yaml
 JSONS:=${YAMLS:.yaml=.json}
 
 all: ${JSONS}
@@ -16,4 +16,4 @@ all: ${JSONS}
 
 
 watch:
-	-while true; do ls -1 *.yaml | entr -dn make vr.json; done
+	-while true; do ls -1 *.yaml | entr -dn make ${JSONS}; done

@@ -19,18 +19,15 @@ currently, it is expected that others will eventually appear as
 VRS is adopted.
 
 
-.. _impl-vr-python:
+.. _impl-vrs-python:
 
-vr-python: GA4GH VRS Python Implementation
-##########################################
+vrs-python: GA4GH VRS Python Implementation
+###########################################
 
-The |vr-python| is an implementation for the GA4GH VRS.  It
+The |vrs-python| is an implementation for the GA4GH VRS.  It
 supports all types covered by the VRS, implements Allele
 normalization and computed identifier generation, and provides "extra"
-features such as translation from HGVS, SPDI, and VCF formats.  See
-`vr-python notebooks
-<https://github.com/ga4gh/vr-python/blob/master/notebooks>`__ for
-usage examples.
+features such as translation from HGVS, SPDI, and VCF formats.
 
 |VRS| MAY be used without using the Python implementation.
 
@@ -71,11 +68,11 @@ standards are summarized in the following table.
    [GET] /sequence/service-info, \-, Refget v1.0.0, `/sequence/service-info <https://reg.clinicalgenome.org/sequence/service-info>`__
    [GET] /sequence/{id}, id => TRUNC512 digest for reference sequence, Refget v1.0.0, `/sequence/vYfm5TA_F-_BtIGjfzjGOj8b6IK5hCTx <https://reg.clinicalgenome.org/sequence/F-LrLMe1SRpfUZHkQmvkVKFEGaoDeHul?start=2232131&end=2232145>`__
    [GET] /sequence/{id}/metadata, id => TRUNC512 digest for reference sequence, Refget v1.0.0, `/sequence/vYfm5TA_F-_BtIGjfzjGOj8b6IK5hCTx/metadata <https://reg.clinicalgenome.org/sequence/F-LrLMe1SRpfUZHkQmvkVKFEGaoDeHul/metadata>`__
-   **VR**,,,
+   **VRS**,,,
    [GET] /vrAllele?hgvs={hgvs}, hgvs => HGVS expression, VRS v1.0, `/vrAllele?hgvs=NC_000007.14:g.55181320A>T <https://reg.clinicalgenome.org/vrAllele?hgvs=NC_000007.14:g.55181320A%3ET>`__  `/vrAllele?hgvs=NC_000007.14:g.55181220del <https://reg.clinicalgenome.org/vrAllele?hgvs=NC_000007.14:g.55181220del>`__
 
-Support for GA4GH refget and VRS specs provided in ClinGen Allele
-Registry is independent from VR-Python. Support for this community
+Support for GA4GH refget and VRS provided in ClinGen Allele
+Registry is independent from VRS-Python. Support for this community
 standards is implemented in ClinGen Allele Registry through extension
 of code written in C++.
 
@@ -85,14 +82,10 @@ of code written in C++.
 BRCA Exchange
 #############
 
-BRCA Exchange [2]_ proposes an API endpoint which will share the variant
-list in VRS JSON model.  Behind the scenes, all variants will be
-represented according to VRS, in a separate table of the
-BRCA Exchange database, and the contents of this table will be served
-by the BRCA Exchange API.  A stand-alone executable will leverage
-these data to integrate the BRCA Exchange variant set with the ClinGen
-allele registry.
+The goal of BRCA Exchange (https://brcaexchange.org/) is to expand approaches to integrate and disseminate information on BRCA variants in Hereditary Breast and Ovarian Cancer (HBOC), as an exemplar for additional genes and additional heritable disorders [2]_.  The BRCA Exchange web portal provides information on the annotation and clinical interpretation of 40,000 variants to date.  As a GA4GH Driver Project, BRCA Exchange is contributing to and adopting the Variant Annotation (VA), Pedigree (Ped) and Variant Representation (VRS) standards.  BRCA Exchange displays the VRS identifiers of all variants, and provides an API endpoint for querying variants by VRS identifier.  With this endpoint, if BRCA Exchange contains a variant that matches the VRS identifier, it returns data on that variant.  Otherwise, it returns a Server 500 error.
 
+Example query:
+   * https://brcaexchange.org/backend/data/vrid?vr_id=ga4gh:VA.jgT2lU4y55WshIgcW__MVzHBnnga_iZL
 
 .. _impl-vicc:
 
@@ -107,8 +100,8 @@ http://docs.cancervariants.org). Each interpretation is be linked to
 one or more variations or a variation class.
 
 As a Driver Project for GA4GH, VICC is contributing to and/or
-adopting three GA4GH standards: VR, Variant Annotation (VA), and the
-Data Use Ontology (DUO). VICC supports queries on all VRS computed
+adopting several GA4GH standards, including VRS, Variant Annotation (VA), 
+and service_info. VICC supports queries on all VRS computed
 identifiers at the searchAssociations endpoint (`vicc-docs`_).
 Features associated with each interpretation are represented as VRS
 objects.

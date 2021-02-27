@@ -32,7 +32,7 @@ base substitution on the reference sequence `NC_000013.11
 chromosome 13, assembly GRCh38) at position 32936732 from the
 reference nucleotide ``G`` to ``C``.
 
-In VR, a contiguous change is represented using an :ref:`allele`
+In VRS, a contiguous change is represented using an :ref:`allele`
 object, which is composed of a :ref:`Location <location>` and of the
 :ref:`State <state>` at that location.  Location and State are
 abstract concepts: VRS is designed to accommodate many kinds of
@@ -41,22 +41,22 @@ other ways of describing locations. Similarly, State may refer to a
 specific sequence change, copy number change, or complex sequence
 event.
 
-In this example, we will use a :ref:`sequence-location`, which is
+In this example, we will use a :ref:`SequenceLocation`, which is
 composed of a sequence identifier and a :ref:`SimpleInterval`.
 
-In VR, all identifiers are a |CURIE|.  Therefore, NC_000013.11 MUST be
+In VRS, all identifiers are a |CURIE|.  Therefore, NC_000013.11 MUST be
 written as the string ``refseq:NC_000013.11`` to make explicit that
 this sequence is from `RefSeq
 <https://www.ncbi.nlm.nih.gov/refseq/>`__ .  VRS does not restrict
 which data sources may be used, but does recommend using prefixes from
 `identifiers.org <http://identifiers.org>`_.
 
-VRS uses :ref:`interbase-coordinates-design`.  Interbase coordinates
-*always* use intervals to refer to sequence spans.  For the purposes
-of this example, interbase coordinates *look* like the more familiar
-0-based, right-open numbering system.  (Please read about
-:ref:`interbase-coordinates-design` if you are interested in the
-significant advantages of this design choice over other coordinate
+VRS uses :ref:`inter-residue-coordinates-design`.  Inter-residue
+coordinates *always* use intervals to refer to sequence spans.  For
+the purposes of this example, inter-residue coordinates *look* like the
+more familiar 0-based, right-open numbering system.  (Please read
+about :ref:`inter-residue-coordinates-design` if you are interested in
+the significant advantages of this design choice over other coordinate
 systems.)
 
 The :ref:`SimpleInterval` for the position ``32936732`` is
@@ -70,7 +70,7 @@ The :ref:`SimpleInterval` for the position ``32936732`` is
     }
 
 The interval is then 'placed' on a sequence to create the
-:ref:`sequence-location`:
+:ref:`SequenceLocation`:
 
 .. code-block:: json
 
@@ -84,13 +84,13 @@ The interval is then 'placed' on a sequence to create the
       "type": "SequenceLocation"
     }
 
-A :ref:`sequence-state` objects consists simply of the replacement sequence, as follows:
+A :ref:`LiteralSequenceExpression` object consists simply of the replacement sequence, as follows:
 
 .. code-block:: json
 
     {
       "sequence": "C",
-      "type": "SequenceState"
+      "type": "LiteralSequenceExprssion"
     }
 
 We are now in a position to construct an :ref:`allele` object using
@@ -110,7 +110,7 @@ the objects defined above:
       },
       "state": {
         "sequence": "C",
-        "type": "SequenceState"
+        "type": "LiteralSequenceExpression"
       },
       "type": "Allele"
     }

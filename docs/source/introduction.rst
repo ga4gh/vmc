@@ -3,9 +3,9 @@ Introduction
 
 Maximizing the personal, public, research, and clinical value of genomic information will require
 that clinicians, researchers, and testing laboratories exchange genetic variation data reliably.
-The Variation Representation Specification (VRS) — written by a partnership among national
-information resource providers, major public initiatives, and diagnostic testing laboratories — is
-an open specification to standardize the exchange of variation data.
+The Variation Representation Specification (VRS, pronounced "verse") — written by a partnership
+among national information resource providers, major public initiatives, and diagnostic testing
+laboratories — is an open specification to standardize the exchange of variation data.
 
 Here we document the primary contributions of this specification for variation representation:
 
@@ -29,14 +29,16 @@ Here we document the primary contributions of this specification for variation r
   for constructing distributed and globally-unique identifiers for molecular variation. Importantly, this
   algorithm enables data providers and consumers to computationally generate consistent, globally
   unique identifiers for variation without a central authority.
-* **A Python implementation.** We provide a Python package (`vr-python
-  <https://github.com/ga4gh/vr-python/>`__) that demonstrates the
-  above schema and algorithms, and supports translation of existing
-  variant representation schemes into VRS for use in genomic data
-  sharing.  It may be used as the basis for development in Python,
-  but it is not required in order to use VRS.
+* **A Python implementation.** We provide a Python package (`vrs-python
+  <https://github.com/ga4gh/vrs-python/>`__) that demonstrates the above schema and algorithms, and
+  supports translation of existing variant representation schemes into VRS for use in genomic data
+  sharing.  It may be used as the basis for development in Python, but it is not required in order
+  to use VRS.
 
 The machine readable schema definitions and example code are available online at the VRS
-repository (https://github.com/ga4gh/vr-spec).
+repository (https://github.com/ga4gh/vrs).
 
 Readers may wish to view a :ref:`complete example <example>` before reading the specification.
+
+For a discussion of VRS with respect to existing standards, such as HGVS, SPDI, and VCF, see
+:ref:`relationships`.

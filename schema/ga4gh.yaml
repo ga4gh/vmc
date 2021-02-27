@@ -1,12 +1,12 @@
 # This file provides parameters for GA4GH specifications.
-# See https://github.com/ga4gh/vr-spec
+# See https://github.com/ga4gh/vrs
 
 
 identifiers:
   # CURIE identifiers have this structure:
   #   prefix ":" reference
   #
-  # VR identifiers follow the CURIE pattern, with this revised
+  # VRS identifiers follow the CURIE pattern, with this revised
   # nomenclature and structure:
   #   namespace ":" type_prefix "." digest
 
@@ -14,7 +14,7 @@ identifiers:
   curie_sep: ':'
   ref_sep: '.'
 
-  # 1:1 map from VR types to prefixes
+  # 1:1 map from VRS types to prefixes
   type_prefix_map:
     # global objects
     Sequence: SQ
@@ -23,12 +23,12 @@ identifiers:
     Allele: VA
     VariationSet: VS
     Text: VT
-    Genotype: VG
+    # Genotype: VG
     Haplotype: VH
+    CopyNumber: VCN
 
     SequenceLocation: VSL
-    # CytobandLocation: VCL
-    # GeneLocation: VGL
+    ChromosomeLocation: VCL
 
 
   regexp: '^ga4gh:(?P<type>[^.]+)\.(?P<digest>.+)$'

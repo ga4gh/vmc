@@ -9,7 +9,7 @@ REQUIRED for implementations of VRS.
 * :ref:`required-data`: All implementations will require access to
   sequences and sequence accessions. The Required External Data
   section provides guidance on the abstract functionality that is
-  required in order to implement VR.
+  required in order to implement VRS.
 * :ref:`normalization`: Expands Alleles to the maximal region of
   representational ambiguity.
 * :ref:`computed-identifiers`: Generate globally unique identifiers

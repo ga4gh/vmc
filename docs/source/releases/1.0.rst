@@ -1,0 +1,7 @@
+1.0
+!!!
+
+1.0.0
+@@@@@
+
+VRS 1.0.0 was the first public release of the Variation Representation Specification.

@@ -4,6 +4,7 @@ Appendices
 .. toctree::
    :maxdepth: 2
 
+   relationships
    associating-annotations
    design_decisions
    development_process

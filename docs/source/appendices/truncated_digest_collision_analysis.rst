@@ -8,8 +8,12 @@ unique identifier based on data that defines the object. This notebook
 discusses the choice of SHA-512 over other digest methods and the choice
 of truncation length.
 
-Source: Reece Hart,
-`CC-BY <https://creativecommons.org/licenses/by/4.0/>`__
+.. note:: Please see `this Jupyter notebook
+  <https://github.com/biocommons/biocommons.seqrepo/blob/master/docs/Truncated%20Digest%20Collision%20Analysis.ipynb>`__
+  in `Python SeqRepo library
+  <https://github.com/biocommons/biocommons.seqrepo>`__ for code and
+  updates.  A fuller explanation is given in [Hart2020]_.
+
 
 Conclusions
 -----------
@@ -29,7 +33,7 @@ Conclusions
     
     from IPython.display import display, Markdown
     
-    from ga4gh.vr.extras.utils import _format_time
+    from ga4gh.vrs.extras.utils import _format_time
     
     algorithms = {'sha512', 'sha1', 'sha256', 'md5', 'sha224', 'sha384'}
 
@@ -413,5 +417,4 @@ digest length (bytes) required for expected collision probability :math:`P` over
 | 1e+ | 39  | 39  | 36  | 36  | 33  | 33  | 30  | 30  | 30  | 27  | 27  |
 | 30  |     |     |     |     |     |     |     |     |     |     |     |
 +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
-
 
