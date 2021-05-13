@@ -8,4 +8,7 @@ def pjs_filter(yaml_dict):
         if 'anyOf' in message_definition:
             _logger.warning(f'Removing anyOf attribute from {message_name} to avoid pjs error.')
             del message_definition['anyOf']
+        if 'allOf' in message_definition:
+            _logger.warning(f'Removing allOf attribute from {message_name} to avoid pjs error.')
+            del message_definition['allOf']
     return yaml_dict
