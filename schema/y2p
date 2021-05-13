@@ -69,6 +69,7 @@ option java_package = "org.ga4gh.vrs.v{version}";
         self.dependencies = dict()
         self.abstract_types = set()
         self.simple_types = set()
+        self._monkey_patch()
         self._map_dependencies()
         self._build_messages()
 
@@ -80,6 +81,14 @@ option java_package = "org.ga4gh.vrs.v{version}";
                 continue
             m.emit()
             print()
+
+    def _monkey_patch(self):
+        logger.warning('Monkey patching Number/IndefiniteRange/DefiniteRange.')
+        self.definitions['Number']['properties']['value']['type'] = 'integer'
+        self.definitions['DefiniteRange']['properties']['min']['type'] = 'integer'
+        self.definitions['DefiniteRange']['properties']['max']['type'] = 'integer'
+        self.definitions['IndefiniteRange']['properties']['value']['type'] = 'integer'
+        return
 
     def _resolve_reference_and_store(self, reference, message):
         r = simplify_reference(reference)
