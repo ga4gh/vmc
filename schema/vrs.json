@@ -253,6 +253,75 @@
                ]
             }
          },
+         "allOf": [
+            {
+               "if": {
+                  "properties": {
+                     "copies": {
+                        "$ref": "#/definitions/Number"
+                     }
+                  }
+               },
+               "then": {
+                  "properties": {
+                     "copies": {
+                        "properties": {
+                           "value": {
+                              "minimum": 0,
+                              "type": "integer"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            {
+               "if": {
+                  "properties": {
+                     "copies": {
+                        "$ref": "#/definitions/IndefiniteRange"
+                     }
+                  }
+               },
+               "then": {
+                  "properties": {
+                     "copies": {
+                        "properties": {
+                           "value": {
+                              "minimum": 0,
+                              "type": "integer"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            {
+               "if": {
+                  "properties": {
+                     "copies": {
+                        "$ref": "#/definitions/DefiniteRange"
+                     }
+                  }
+               },
+               "then": {
+                  "properties": {
+                     "copies": {
+                        "properties": {
+                           "min": {
+                              "minimum": 0,
+                              "type": "integer"
+                           },
+                           "max": {
+                              "minimum": 0,
+                              "type": "integer"
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         ],
          "required": [
             "type",
             "subject",
@@ -380,6 +449,142 @@
                ]
             }
          },
+         "allOf": [
+            {
+               "if": {
+                  "properties": {
+                     "start": {
+                        "$ref": "#/definitions/Number"
+                     }
+                  }
+               },
+               "then": {
+                  "properties": {
+                     "start": {
+                        "properties": {
+                           "value": {
+                              "minimum": 0,
+                              "type": "integer"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            {
+               "if": {
+                  "properties": {
+                     "start": {
+                        "$ref": "#/definitions/IndefiniteRange"
+                     }
+                  }
+               },
+               "then": {
+                  "properties": {
+                     "start": {
+                        "properties": {
+                           "value": {
+                              "minimum": 0,
+                              "type": "integer"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            {
+               "if": {
+                  "properties": {
+                     "start": {
+                        "$ref": "#/definitions/DefiniteRange"
+                     }
+                  }
+               },
+               "then": {
+                  "properties": {
+                     "start": {
+                        "properties": {
+                           "min": {
+                              "minimum": 0,
+                              "type": "integer"
+                           },
+                           "max": {
+                              "minimum": 0,
+                              "type": "integer"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            {
+               "if": {
+                  "properties": {
+                     "end": {
+                        "$ref": "#/definitions/Number"
+                     }
+                  }
+               },
+               "then": {
+                  "properties": {
+                     "end": {
+                        "properties": {
+                           "value": {
+                              "minimum": 0,
+                              "type": "integer"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            {
+               "if": {
+                  "properties": {
+                     "end": {
+                        "$ref": "#/definitions/IndefiniteRange"
+                     }
+                  }
+               },
+               "then": {
+                  "properties": {
+                     "end": {
+                        "properties": {
+                           "value": {
+                              "minimum": 0,
+                              "type": "integer"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            {
+               "if": {
+                  "properties": {
+                     "end": {
+                        "$ref": "#/definitions/DefiniteRange"
+                     }
+                  }
+               },
+               "then": {
+                  "properties": {
+                     "end": {
+                        "properties": {
+                           "min": {
+                              "minimum": 0,
+                              "type": "integer"
+                           },
+                           "max": {
+                              "minimum": 0,
+                              "type": "integer"
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         ],
          "required": [
             "type",
             "start",
@@ -512,6 +717,75 @@
                ]
             }
          },
+         "allOf": [
+            {
+               "if": {
+                  "properties": {
+                     "count": {
+                        "$ref": "#/definitions/Number"
+                     }
+                  }
+               },
+               "then": {
+                  "properties": {
+                     "count": {
+                        "properties": {
+                           "value": {
+                              "minimum": 0,
+                              "type": "integer"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            {
+               "if": {
+                  "properties": {
+                     "count": {
+                        "$ref": "#/definitions/IndefiniteRange"
+                     }
+                  }
+               },
+               "then": {
+                  "properties": {
+                     "count": {
+                        "properties": {
+                           "value": {
+                              "minimum": 0,
+                              "type": "integer"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
+            {
+               "if": {
+                  "properties": {
+                     "count": {
+                        "$ref": "#/definitions/DefiniteRange"
+                     }
+                  }
+               },
+               "then": {
+                  "properties": {
+                     "count": {
+                        "properties": {
+                           "min": {
+                              "minimum": 0,
+                              "type": "integer"
+                           },
+                           "max": {
+                              "minimum": 0,
+                              "type": "integer"
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         ],
          "required": [
             "type",
             "seq_expr",
